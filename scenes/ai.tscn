@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://d330hee7j2nid"]
+
+[ext_resource type="Script" path="res://scripts/ai.gd" id="1_2c7fo"]
+[ext_resource type="ArrayMesh" uid="uid://derq2rpmw7lar" path="res://assets/3D Models/shark.obj" id="2_3hsgd"]
+[ext_resource type="ArrayMesh" uid="uid://dgc8wyd6qjhma" path="res://assets/3D Models/cone.obj" id="3_3jixw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_naok8"]
+size = Vector3(1, 2.25, 7.25)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_trobv"]
+points = PackedVector3Array(-0.000195742, 1, -0.000195742, 0.194988, -1, -0.980814, -0.000195742, -1, -1, -0.195184, -1, -0.980814, -0.382733, -1, -0.924041, -0.555599, -1, -0.831637, -0.707126, -1, -0.707126, -0.831637, -1, -0.555599, -0.924041, -1, -0.382733, -0.980814, -1, -0.195184, -1, -1, -0.000195742, -0.980814, -1, 0.194988, -0.924041, -1, 0.382537, -0.831637, -1, 0.555403, -0.707126, -1, 0.70693, -0.555599, -1, 0.831441, -0.382733, -1, 0.923845, -0.195184, -1, 0.980619, -0.000195742, -1, 1, 0.194988, -1, 0.980619, 0.382537, -1, 0.923845, 0.555403, -1, 0.831441, 0.70693, -1, 0.70693, 0.831441, -1, 0.555403, 0.923845, -1, 0.382537, 0.980619, -1, 0.194988, 1, -1, -0.000195742, 0.980619, -1, -0.195184, 0.923845, -1, -0.382733, 0.831441, -1, -0.555599, 0.70693, -1, -0.707126, 0.555403, -1, -0.831637, 0.382537, -1, -0.924041)
+
+[node name="AI" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_2c7fo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 0)
+shape = SubResource("BoxShape3D_naok8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, -1.125, 0)
+mesh = ExtResource("2_3hsgd")
+skeleton = NodePath("../..")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.0
+
+[node name="VisionArea" type="Area3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="VisionArea"]
+transform = Transform3D(6, 0, 0, 0, -2.62268e-07, -6, 0, 6, -2.62268e-07, -0.00146723, 0.794992, -8.86555)
+visible = false
+mesh = ExtResource("3_3jixw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisionArea"]
+transform = Transform3D(6, 0, 0, 0, -2.62268e-07, -6, 0, 6, -2.62268e-07, -0.00146723, 0.794992, -8.86555)
+shape = SubResource("ConvexPolygonShape3D_trobv")
+
+[node name="VisionTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="VisionRayCast" type="RayCast3D" parent="."]
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
+[connection signal="area_entered" from="VisionArea" to="." method="_on_vision_area_area_entered"]
+[connection signal="timeout" from="VisionTimer" to="." method="_on_timer_timeout"]

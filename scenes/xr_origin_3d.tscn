@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmss6bahby4rf"]
+[gd_scene load_steps=9 format=3 uid="uid://dmss6bahby4rf"]
 
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="1_pcthm"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="2_01eyn"]
@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="3_he1ir"]
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_gqls2"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_enoh4"]
-[ext_resource type="Script" path="res://addons/godot-xr-tools/player/player_body.gd" id="6_e56vd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3puly"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6b76b"]
 
 [node name="XROrigin3D" type="XROrigin3D"]
 
@@ -31,10 +34,12 @@ strafe = true
 
 [node name="FunctionPickup" parent="LeftHand" instance=ExtResource("3_he1ir")]
 
-[node name="PlayerBody" type="CharacterBody3D" parent="." groups=["player_body"] instance=ExtResource("5_enoh4")]
-process_priority = -100
-process_physics_priority = -100
-top_level = true
-collision_layer = 524288
-collision_mask = 1023
-script = ExtResource("6_e56vd")
+[node name="PlayerBody" parent="." instance=ExtResource("5_enoh4")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["player_body"]]
+shape = SubResource("CapsuleShape3D_3puly")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" groups=["player_body"]]
+visible = false
+mesh = SubResource("CapsuleMesh_6b76b")
+skeleton = NodePath("../../PlayerBody")
