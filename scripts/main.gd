@@ -2,7 +2,7 @@ extends Node3D
 
 var xr_interface: XRInterface
 
-@onready var _player := $"XROrigin3D/PlayerBody"
+@onready var _player := $XROrigin3D/PlayerBody
 
 var _cam_rotation := 0.0
 func _ready() -> void:

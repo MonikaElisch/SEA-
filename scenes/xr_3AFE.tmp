@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmss6bahby4rf"]
+[gd_scene load_steps=10 format=3 uid="uid://dmss6bahby4rf"]
 
 [ext_resource type="PackedScene" uid="uid://xqimcf20s2jp" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_fullglove_low.tscn" id="1_pcthm"]
 [ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="2_01eyn"]
@@ -7,10 +7,18 @@
 [ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="4_gqls2"]
 [ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="5_enoh4"]
 
+[sub_resource type="GDScript" id="GDScript_ly8v6"]
+script/source = "
+"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3puly"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kwu4n"]
+
 [node name="XROrigin3D" type="XROrigin3D"]
+script = SubResource("GDScript_ly8v6")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="RightHand" type="XRController3D" parent="."]
 tracker = &"right_hand"
@@ -32,4 +40,10 @@ strafe = true
 [node name="FunctionPickup" parent="LeftHand" instance=ExtResource("3_he1ir")]
 
 [node name="PlayerBody" parent="." instance=ExtResource("5_enoh4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.898645, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerBody" groups=["player_body"]]
+shape = SubResource("CapsuleShape3D_3puly")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlayerBody/CollisionShape3D" groups=["player_body"]]
+mesh = SubResource("CapsuleMesh_kwu4n")
+skeleton = NodePath("../..")
