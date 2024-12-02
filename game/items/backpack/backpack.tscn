@@ -32,7 +32,6 @@ closed_pose = ExtResource("7_acm53")
 item_id = "backpack"
 item_type = ExtResource("2_t0xmd")
 auto_return = true
-auto_return_timeout = 2.0
 
 [node name="CollisionShape3D" parent="." index="0"]
 shape = SubResource("ConvexPolygonShape3D_lp6as")

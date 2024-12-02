@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PersistentZoneInfo" load_steps=2 format=3 uid="uid://2l1qi08a6oih"]
+
+[ext_resource type="Script" path="res://components/persistent/persistent_zone_info.gd" id="1_hlajw"]
+
+[resource]
+script = ExtResource("1_hlajw")
+zone_id = "zone_undersea"
+instance_scene = "res://game/zones/Undersea/undersea_main.tscn"

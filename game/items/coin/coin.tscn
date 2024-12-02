@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6hrc4udmclug"]
+
+[ext_resource type="PackedScene" uid="uid://cc2akik80xtnb" path="res://components/persistent/persistent_item.tscn" id="1_t4c31"]
+[ext_resource type="ArrayMesh" uid="uid://bdr3cpeh7erfw" path="res://assets/3D Models/pickable Item/coin.obj" id="2_odlhr"]
+[ext_resource type="Resource" uid="uid://d3ksinjbt6gw4" path="res://game/items/coin/coin_type.tres" id="2_q5xja"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8w545"]
+size = Vector3(0.0150299, 0.0908032, 0.0669212)
+
+[node name="coin" instance=ExtResource("1_t4c31")]
+item_id = "coin_"
+item_type = ExtResource("2_q5xja")
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.000455789, -3.13707e-05, -0.0016098)
+shape = SubResource("BoxShape3D_8w545")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(-1.74846e-09, 0, 0.04, 0, 0.04, 0, -0.04, 0, -1.74846e-09, 0, -0.045, 0)
+mesh = ExtResource("2_odlhr")

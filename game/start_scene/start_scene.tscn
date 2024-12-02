@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b64v7w5y3yghi"]
+[gd_scene load_steps=20 format=3 uid="uid://b64v7w5y3yghi"]
 
 [ext_resource type="PackedScene" uid="uid://qbmx03iibuuu" path="res://addons/godot-xr-tools/staging/scene_base.tscn" id="1_2sv0p"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="3_du2hn"]
@@ -6,9 +6,18 @@
 [ext_resource type="Material" uid="uid://ccdofvku4c7w3" path="res://assets/prototype_materials/stone_grey.tres" id="3_uwduq"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="4_7pgy0"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="5_5cr7c"]
+[ext_resource type="Texture2D" uid="uid://cecru1jc86h46" path="res://assets/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="5_ck1q7"]
 [ext_resource type="PackedScene" uid="uid://cl8q8f32imusk" path="res://game/start_scene/start_ui.tscn" id="5_grt1o"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_un4d2"]
+panorama = ExtResource("5_ck1q7")
+
+[sub_resource type="Sky" id="Sky_kjhny"]
+sky_material = SubResource("PanoramaSkyMaterial_un4d2")
+
 [sub_resource type="Environment" id="Environment_oplr7"]
+background_mode = 2
+sky = SubResource("Sky_kjhny")
 ambient_light_source = 1
 reflected_light_source = 1
 
@@ -30,14 +39,14 @@ size = Vector3(12, 4, 1)
 resource_local_to_scene = true
 size = Vector2(3, 2)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2wivy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_b8dca"]
 viewport_path = NodePath("Viewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmib1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uanfy"]
 transparency = 1
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_2wivy")
+albedo_texture = SubResource("ViewportTexture_b8dca")
 texture_filter = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iru2p"]
@@ -71,6 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
 omni_range = 12.0
 
 [node name="Ground" type="StaticBody3D" parent="World" index="2"]
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Ground" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
@@ -82,6 +92,7 @@ shape = SubResource("BoxShape3D_3ap0s")
 
 [node name="Wall1" type="StaticBody3D" parent="World" index="3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -5)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Wall1" index="0"]
 mesh = SubResource("QuadMesh_l0e1e")
@@ -92,6 +103,7 @@ shape = SubResource("BoxShape3D_w6gh2")
 
 [node name="Wall2" type="StaticBody3D" parent="World" index="4"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5, 2, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Wall2" index="0"]
 mesh = SubResource("QuadMesh_l0e1e")
@@ -102,6 +114,7 @@ shape = SubResource("BoxShape3D_w6gh2")
 
 [node name="Wall3" type="StaticBody3D" parent="World" index="5"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 2, 5)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Wall3" index="0"]
 mesh = SubResource("QuadMesh_l0e1e")
@@ -112,6 +125,7 @@ shape = SubResource("BoxShape3D_w6gh2")
 
 [node name="Wall4" type="StaticBody3D" parent="World" index="6"]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -5, 2, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Wall4" index="0"]
 mesh = SubResource("QuadMesh_l0e1e")
@@ -122,6 +136,7 @@ shape = SubResource("BoxShape3D_w6gh2")
 
 [node name="Ceiling" type="StaticBody3D" parent="World" index="7"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+visible = false
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="World/Ceiling" index="0"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
@@ -136,12 +151,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -3)
 update_mode = 2
 throttle_fps = 15.0
 unshaded = true
+scene_properties_keys = PackedStringArray()
 
 [node name="StartUI" parent="Screen/Viewport" index="0" instance=ExtResource("5_grt1o")]
 
 [node name="Screen" parent="Screen" index="1"]
 mesh = SubResource("QuadMesh_44p7b")
-surface_material_override/0 = SubResource("StandardMaterial3D_tmib1")
+surface_material_override/0 = SubResource("StandardMaterial3D_uanfy")
 
 [node name="CollisionShape3D" parent="Screen/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_iru2p")

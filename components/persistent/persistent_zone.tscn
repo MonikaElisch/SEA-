@@ -6,4 +6,3 @@
 [node name="PersistentZone" instance=ExtResource("1_rr08k")]
 script = ExtResource("2_hkrv4")
 zone_info = null
-item_database = null
