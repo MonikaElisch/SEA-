@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PersistentItemType" load_steps=2 format=3 uid="uid://5f6f6l2s5aml"]
+
+[ext_resource type="Script" path="res://components/persistent/persistent_item_type.gd" id="1_p1ib5"]
+
+[resource]
+script = ExtResource("1_p1ib5")
+type_id = "key_type"
+instance_scene = "res://game/items/key/key.tscn"

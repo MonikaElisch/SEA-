@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://crh6ifdba1551"
+path="res://.godot/imported/key.obj-a797919e32b122475626e792850bbf7e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/key.obj-a797919e32b122475626e792850bbf7e.mesh"]
+
+source_file="res://assets/3D Models/pickable Item/key.obj"
+dest_files=["res://.godot/imported/key.obj-a797919e32b122475626e792850bbf7e.mesh", "res://.godot/imported/key.obj-a797919e32b122475626e792850bbf7e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
