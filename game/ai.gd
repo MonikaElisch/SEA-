@@ -10,7 +10,6 @@ extends CharacterBody3D
 @onready var swimSpeed = 3.0
 @onready var wanderTimer = 20.0
 
-var speed
 func _ready():
 	set_physics_process(false)
 	await get_tree().physics_frame
@@ -27,7 +26,7 @@ func  _physics_process(_delta: float) -> void:
 		#speed = swimSpeed
 		wander(_delta)
 	#look_at(Target.global_transform.origin, Vector3.UP)
-	var current_position = global_transform.origin
+	#var _current_position = global_transform.origin
 	var next_position := nav_agent.get_next_path_position()
 	#var new_velocity = (next_position - current_position).normalized() * speed
 	#nav_agent.set_velocity_forced(new_velocity)

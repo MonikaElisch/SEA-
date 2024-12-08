@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://b50y0k1yi002g"]
 
 [ext_resource type="Script" path="res://game/game_state.gd" id="1_0aj3c"]
-[ext_resource type="Resource" uid="uid://2l1qi08a6oih" path="res://game/zones/undersea/undersea_main_info.tres" id="2_0npuf"]
+[ext_resource type="Resource" uid="uid://d1lgdwh7pv220" path="res://game/zones/ship_quarter/ship_quarter_zone_info.tres" id="2_cu8sv"]
 [ext_resource type="Resource" uid="uid://cx1d62bw62y0k" path="res://game/zones/zone_database.tres" id="3_x37w3"]
 [ext_resource type="Resource" uid="uid://5sqmlq5ruolr" path="res://game/items/item_database.tres" id="4_im36k"]
 
 [node name="GameState" type="Node"]
 script = ExtResource("1_0aj3c")
-starting_zone = ExtResource("2_0npuf")
+starting_zone = ExtResource("2_cu8sv")
 zone_database = ExtResource("3_x37w3")
 item_database = ExtResource("4_im36k")

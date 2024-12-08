@@ -3,6 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://b28f4me1ublg4" path="res://assets/prototype_materials/pattern.png" id="1_s5ry3"]
 
 [resource]
-albedo_color = Color(0, 0.431373, 0.2, 1)
+albedo_color = Color(0.647059, 0.639216, 0.568627, 1)
 albedo_texture = ExtResource("1_s5ry3")
 uv1_triplanar = true
